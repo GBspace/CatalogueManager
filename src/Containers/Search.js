@@ -24,7 +24,6 @@ class Search extends React.Component{
 
     onSearchInputChange = (e)=>{
         const searchValue = e.target.value;
-        // console.log("Handling submit : ", searchValue);
         this.setState({
             searchValue
         });
@@ -57,7 +56,6 @@ class Search extends React.Component{
     };
 };
 
-// export default Search;
 
 const mapDispatchToProps = (dispatch)=>({
     searchStore: (text)=>dispatch(searchStore(text))

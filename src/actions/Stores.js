@@ -48,7 +48,6 @@ export const fetchCategories = ()=>{
 
 
 export const searchStore = text => dispatch =>{
-    console.log("searching ", text);
     dispatch({
         type: 'SEARCH_STORE',
         payload: text.toLowerCase()
