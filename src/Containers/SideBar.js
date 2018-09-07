@@ -6,7 +6,6 @@ import Categories from './Categories';
 export const SideBar = ()=>{
     return(
         <div>
-            
             <Search/>
             <Categories/>
         </div>
