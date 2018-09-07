@@ -2,8 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {fetchStores,fetchCategories} from '../actions/Stores';
 import {getStores,orderedSelectedStoresPerCategory,getSelectedItemsList} from '../selectors/Stores';
-import {Link} from 'react-router';
-import R from 'ramda';
 import {reOrderStores} from '../actions/Stores';
 import {addSelectedToStore,updateSelectedStoreToStore} from '../actions/Order';
 
@@ -13,8 +11,6 @@ class Stores extends React.Component{
 
         this.state = {
             draggedItemIndex: null
-            // ,
-            // editedItemIndex: null
         };
     };
 
@@ -24,7 +20,6 @@ class Stores extends React.Component{
     };
 
     handleDragStart = (e)=>{
-        console.log("Handling drag start from" , e.currentTarget.id);
         this.setState({
             draggedItemIndex: e.currentTarget.id
         });
@@ -37,10 +32,8 @@ class Stores extends React.Component{
     };
 
     reorderItem = ({start,end})=>{
-        console.log("Reordering");
         end = parseInt(end,10);
         start = parseInt(start,10);
-        console.log("end and start are ", end , start);
         const reorderIsCorrect = !isNaN(start) && !isNaN(end) && start !== end;
         if (reorderIsCorrect) {
            this.props.reOrderStores({start,end});
@@ -49,20 +42,14 @@ class Stores extends React.Component{
 
     handleDrop = (e)=>{
         const droppedItemId = e.currentTarget.id;
-        console.log("Handling drop at" , droppedItemId);
-        console.log("element " , this.state.draggedItemIndex , " to be dropped");
-        // if(this.state.editedItemIndex === null){
-            this.reorderItem({
+        this.reorderItem({
                 start: this.state.draggedItemIndex,
                 end: droppedItemId
             });
-        // }
         
         this.setState({
             draggedItemIndex: null
         });
-        // console.log("dropped");
-        
     };
 
     updatingSelectedArray = ()=>{
@@ -71,19 +58,12 @@ class Stores extends React.Component{
 
     updateState = (storeId)=>{
         const existingArray = this.state.selected;
-        // console.log("Existing array ", existingArray);
-        // console.log("storeID " , storeId);
-        // console.log("State before updating ", existingArray);
-        
             if( existingArray.includes(storeId)){
                 for( var i = 0; i <= existingArray.length-1; i++){ 
                     if ( existingArray[i] === storeId) {
-                        // console.log("splicing");
                         existingArray.splice(i, 1); 
                     }
                 }
-            
-               
                 this.setState({
                     selected: existingArray
                 })
@@ -93,40 +73,16 @@ class Stores extends React.Component{
                 }))
             
             };
-            // console.log("State after updating ", this.state.selected);
     };
 
     itemSelected = (storeId) => (e)=>{
-        // console.log(this.props)
         e.preventDefault();
-        // const currId = e.currentTarget.id;
-        // console.log("Updating array with phn id ", storeId);
-        // this.updateState(storeId);
-        // this.props.addSelectedToStore(this.state.selected);
         this.props.updateSelectedStoreToStore(storeId);
-        
-        
-       
-        
-        // this.props.addSelectedToStore(this.state.selected);
-
-        
     };
 
-
- 
-
- 
-
-    renderPhone = (store,index)=>{
-        // console.log("RENDERING Store ", store);
-        // console.log("Index ", index);
-        let thumbnail = null;
-        
+    renderStore = (store,index)=>{
         return (
-            
             <div className='col-sm-4 col-lg-4 col-md-4 book-list' key={index} id={store.id}
-            // id={index}
                 onClick={this.itemSelected(store.id)}
                 onDragStart={this.handleDragStart}
                 onDragOver={this.handleDragOver}
@@ -135,10 +91,9 @@ class Stores extends React.Component{
                >
                 <div className="thumbnail">
                     <img className={
-                            // thumbnail
                             (this.props.getSelectedItemsList.includes(store.id)) ?
-                                    thumbnail = 'img-thumbnail-selected':
-                                    thumbnail = 'img-thumbnail'
+                                    'img-thumbnail-selected':
+                                    'img-thumbnail'
                                 }
                         src={store.image}
                         alt={store.name}
@@ -147,7 +102,7 @@ class Stores extends React.Component{
                     
                     <div className="middle">
                         <div className="text">
-                            Offer till stock lasts!!!
+                            <h5>5 left near you</h5>
                         </div>   
                     </div>
                 </div>
@@ -162,41 +117,29 @@ class Stores extends React.Component{
                         </div>
                     </h4>
                     <p> {store.description}</p>
-                   
-                    
                 </div>
-               
             </div>
         );
     };
 
     render(){
-        const {stores,
-                
-            addSelectedToStore,orderedSelectedStoresPerCategory,orderedState} = this.props;
-      
+        const {stores,addSelectedToStore,orderedSelectedStoresPerCategory} = this.props;
         return(
         <div>
-           
             <div className="books row">
                 {stores.map((store,index)=>{
-                    return this.renderPhone(store,index);
+                    return this.renderStore(store,index);
                 })}
             </div>
             
             <div className="row">
                 <div className="col-md-12">
-                    
-            
                     <button className="pull-right btn btn-primary"
                         onClick={()=>addSelectedToStore(orderedSelectedStoresPerCategory)}
                         >
                         Save
                     </button>
-                    
-                  
                 </div>
-
             </div>
         </div>            
        
@@ -205,7 +148,6 @@ class Stores extends React.Component{
 
 const mapDispatchToProps = (dispatch)=>({
     fetchStores: ()=>dispatch(fetchStores()),
-    // addPhoneToBasket: (id)=>dispatch(addPhoneToBasket(id)),
     fetchCategories: ()=>dispatch(fetchCategories()),
     reOrderStores: (value)=>dispatch(reOrderStores(value)),
     updateSelectedStoreToStore:(storeID)=>dispatch(updateSelectedStoreToStore(storeID)),
@@ -214,15 +156,12 @@ const mapDispatchToProps = (dispatch)=>({
     
     
 });
-//ownProps are available here because this component is defined directly on route.
-//child componenets must include compose withRoutes
+
 const mapStateToProps = (state,ownProps)=>{
-    // console.log("state is " , state , "and  ownProps are ", ownProps);
     return ({
         stores: getStores(state,ownProps),
         orderedSelectedStoresPerCategory: orderedSelectedStoresPerCategory(state),
-        getSelectedItemsList:getSelectedItemsList(state),
-        orderedState: state.Order.orderedState
+        getSelectedItemsList:getSelectedItemsList(state)
     });
 };
 
