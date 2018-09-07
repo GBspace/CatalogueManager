@@ -133,10 +133,6 @@ class Stores extends React.Component{
                 onDrop={this.handleDrop}
                 draggable='true'
                >
-                <div>ID: {store.id}</div>
-                <div>INDEX: {index}</div>
-                
-
                 <div className="thumbnail">
                     <img className={
                             // thumbnail
