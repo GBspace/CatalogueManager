@@ -26,7 +26,7 @@ export const fetchStores = ()=>{
 
 export const fetchCategories = ()=>{
     
-    return async (dispatch,getState)=>{
+    return async (dispatch)=>{
         try{
             dispatch({
                 type: 'FETCH_CATEGORIES_START'
