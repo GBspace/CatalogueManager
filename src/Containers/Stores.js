@@ -12,8 +12,9 @@ class Stores extends React.Component{
         super(props);
 
         this.state = {
-            draggedItemIndex: null,
-            editedItemIndex: null
+            draggedItemIndex: null
+            // ,
+            // editedItemIndex: null
         };
     };
 
@@ -124,7 +125,8 @@ class Stores extends React.Component{
         
         return (
             
-            <div className='col-sm-4 col-lg-4 col-md-4 book-list' key={index} id={index}
+            <div className='col-sm-4 col-lg-4 col-md-4 book-list' key={index} id={store.id}
+            // id={index}
                 onClick={this.itemSelected(store.id)}
                 onDragStart={this.handleDragStart}
                 onDragOver={this.handleDragOver}

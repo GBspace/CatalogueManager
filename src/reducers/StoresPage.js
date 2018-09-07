@@ -7,6 +7,12 @@ const initialState = {
     
 };
 
+const fetchIndexFromId = (state,id)=>{
+    const idx = state.ids.indexOf(String(id))
+    console.log("idx ", idx);
+    return idx;
+};
+
 export default (state = initialState,action)=>{
     switch(action.type){
         case 'FETCH_STORE_SUCCESS':
@@ -26,7 +32,10 @@ export default (state = initialState,action)=>{
         {   
             console.log("INSIDE REORDERING STORE -- STATE.ids IS  " , state.ids);
             
-            const {  start: currPosIndex,end: nextPosIndex } = action.payload;
+            const {  start: currPosId,end: nextPosId } = action.payload;
+            let currPosIndex = fetchIndexFromId(state,currPosId);
+            let nextPosIndex = fetchIndexFromId(state,nextPosId);
+
             console.log("start at ", currPosIndex , "End at " , nextPosIndex);
             const element = state.ids[currPosIndex];
             console.log(" id of the item moved is ", element)
