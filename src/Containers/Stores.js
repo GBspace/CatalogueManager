@@ -104,7 +104,7 @@ class Stores extends React.Component{
         // this.updateState(storeId);
         // this.props.addSelectedToStore(this.state.selected);
         this.props.updateSelectedStoreToStore(storeId);
-        // this.props.getSelectedStoresFromStore();
+        
         
        
         
@@ -211,8 +211,6 @@ const mapDispatchToProps = (dispatch)=>({
     updateSelectedStoreToStore:(storeID)=>dispatch(updateSelectedStoreToStore(storeID)),
     addSelectedToStore:(value)=>dispatch(addSelectedToStore(value))
 
-    // ,
-    // getSelectedStoresFromStore:()=>dispatch(getSelectedStoresFromStore())
     
     
 });

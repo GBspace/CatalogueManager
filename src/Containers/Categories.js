@@ -14,22 +14,13 @@ import {reorderCategories} from '../actions/Categories';
         super(props);
 
         this.state = {
-            draggedItemIndex: null,
-            editedItemIndex: null
+            draggedItemIndex: null
         };
-
-        // this.handleDragOver = this.handleDragOver.bind(this);
-        // this.handleDragStart = this.handleDragStart.bind(this);
-        // this.handleDrop = this.handleDrop.bind(this);
-
-
     }
     
     reorderItem = ({start,end})=>{
-        // console.log("Reordering");
         end = parseInt(end,10);
         start = parseInt(start,10);
-        // console.log("end and start are ", end , start);
         const reorderIsCorrect = !isNaN(start) && !isNaN(end) && start !== end;
         if (reorderIsCorrect) {
             this.props.reorderCategories({start,end});
@@ -49,21 +40,18 @@ import {reorderCategories} from '../actions/Categories';
 
     handleDrop = (e)=>{
         const droppedItemId = e.currentTarget.id;
-        // console.log("Handling drop at" , droppedItemId);
-        // console.log("element " , this.state.draggedItemIndex , " to be dropped");
-        // if(this.state.editedItemIndex === null){
             this.reorderItem({
                 start: this.state.draggedItemIndex,
                 end: droppedItemId
             });
-        // }
+        
         
         this.setState({
             draggedItemIndex: null
         });
-        // console.log("dropped");
+       
     };
-    // console.log(" activeCategoryId " , activeCategoryId);
+    
     renderCategory = (category,index)=>{
         const getActiveState = R.propEq('id',this.props.activeCategoryId);
         const linkClass = classNames({
@@ -77,7 +65,6 @@ import {reorderCategories} from '../actions/Categories';
                 onDragOver={this.handleDragOver}
                 onDrop={this.handleDrop}
                 draggable='true'
-                // id={category.id}
                 id={index}
                 >
                 <Link 
@@ -119,7 +106,6 @@ import {reorderCategories} from '../actions/Categories';
                    
                     {
                         categories.map((category,index)=>{
-                        // console.log(category);
                         return this.renderCategory(category,index);
                     })
                 }
@@ -132,7 +118,6 @@ import {reorderCategories} from '../actions/Categories';
 const mapStateToProps = (state,ownProps)=>({
     categories: getCategories(state),
     activeCategoryId: getActiveCategoryId(ownProps),
-    // orderedSelectedStoresPerCategory: orderedSelectedStoresPerCategory(state),
     getSelectedItemsCountPerCategory:getSelectedItemsCountPerCategory(state)
 });
 
@@ -144,4 +129,3 @@ export default compose(
     withRouter,
     connect(mapStateToProps,mapDispatchToProps)
 )(Categories);
-// export default connect(mapStateToProps)(Categories);
