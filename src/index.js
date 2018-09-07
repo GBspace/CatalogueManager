@@ -19,15 +19,8 @@ const jsx = (
                 <Route path='/' component={Stores}></Route>
                 <Route path='/categories/:id' component={Stores} />
             </Route>
-            
-            
-            
-       </Router>
+        </Router>
     </Provider>
 );
-
-
-
-
 ReactDOM.render(jsx,document.getElementById('root'));
 
