@@ -5,7 +5,7 @@ import {getStores,orderedSelectedStoresPerCategory,getSelectedItemsList} from '.
 import {Link} from 'react-router';
 import R from 'ramda';
 import {reOrderStores} from '../actions/Stores';
-import {addSelectedToStore,updateSelectedPhoneToStore} from '../actions/Order';
+import {addSelectedToStore,updateSelectedStoreToStore} from '../actions/Order';
 
 class Stores extends React.Component{
     constructor(props){
@@ -103,7 +103,7 @@ class Stores extends React.Component{
         // console.log("Updating array with phn id ", storeId);
         // this.updateState(storeId);
         // this.props.addSelectedToStore(this.state.selected);
-        this.props.updateSelectedPhoneToStore(storeId);
+        this.props.updateSelectedStoreToStore(storeId);
         // this.props.getSelectedStoresFromStore();
         
        
@@ -208,7 +208,7 @@ const mapDispatchToProps = (dispatch)=>({
     // addPhoneToBasket: (id)=>dispatch(addPhoneToBasket(id)),
     fetchCategories: ()=>dispatch(fetchCategories()),
     reOrderStores: (value)=>dispatch(reOrderStores(value)),
-    updateSelectedPhoneToStore:(storeID)=>dispatch(updateSelectedPhoneToStore(storeID)),
+    updateSelectedStoreToStore:(storeID)=>dispatch(updateSelectedStoreToStore(storeID)),
     addSelectedToStore:(value)=>dispatch(addSelectedToStore(value))
 
     // ,

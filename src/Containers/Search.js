@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {searchPhone} from '../actions/Stores';
+import {searchStore} from '../actions/Stores';
 
 class Search extends React.Component{
 
@@ -19,7 +19,7 @@ class Search extends React.Component{
     handleSubmit = (e)=>{
         
         e.preventDefault();
-        this.props.searchPhone(this.state.searchValue);
+        this.props.searchStore(this.state.searchValue);
     };
 
     onSearchInputChange = (e)=>{
@@ -60,7 +60,7 @@ class Search extends React.Component{
 // export default Search;
 
 const mapDispatchToProps = (dispatch)=>({
-    searchPhone: (text)=>dispatch(searchPhone(text))
+    searchStore: (text)=>dispatch(searchStore(text))
 });
 
 export default connect(undefined, mapDispatchToProps)(Search);
