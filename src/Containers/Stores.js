@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import {fetchStores,fetchCategories} from '../actions/Stores';
 import {getStores,orderedSelectedStoresPerCategory,getSelectedItemsList} from '../selectors/Stores';
 import {reOrderStores} from '../actions/Stores';
-import {addSelectedToStore,updateSelectedStoreToStore} from '../actions/Order';
+import {updateSelectedStoreToStore} from '../actions/Order';
+import {Link} from 'react-router';
 
 class Stores extends React.Component{
     constructor(props){
@@ -52,28 +53,24 @@ class Stores extends React.Component{
         });
     };
 
-    updatingSelectedArray = ()=>{
-
-    };  
-
-    updateState = (storeId)=>{
-        const existingArray = this.state.selected;
-            if( existingArray.includes(storeId)){
-                for( var i = 0; i <= existingArray.length-1; i++){ 
-                    if ( existingArray[i] === storeId) {
-                        existingArray.splice(i, 1); 
-                    }
-                }
-                this.setState({
-                    selected: existingArray
-                })
-            }else{
-                this.setState((prevState) => ({
-                    selected: [...prevState.selected, storeId]
-                }))
+    // updateState = (storeId)=>{
+    //     const existingArray = this.state.selected;
+    //         if( existingArray.includes(storeId)){
+    //             for( var i = 0; i <= existingArray.length-1; i++){ 
+    //                 if ( existingArray[i] === storeId) {
+    //                     existingArray.splice(i, 1); 
+    //                 }
+    //             }
+    //             this.setState({
+    //                 selected: existingArray
+    //             })
+    //         }else{
+    //             this.setState((prevState) => ({
+    //                 selected: [...prevState.selected, storeId]
+    //             }))
             
-            };
-    };
+    //         };
+    // };
 
     itemSelected = (storeId) => (e)=>{
         e.preventDefault();
@@ -123,7 +120,11 @@ class Stores extends React.Component{
     };
 
     render(){
-        const {stores,addSelectedToStore,orderedSelectedStoresPerCategory} = this.props;
+        const {stores} = this.props;
+        const linkClass = ({
+            "list-group-item" : true
+        });
+
         return(
         <div>
             <div className="books row">
@@ -134,13 +135,17 @@ class Stores extends React.Component{
             
             <div className="row">
                 <div className="col-md-12">
-                    <button className="pull-right btn btn-primary"
-                        onClick={()=>addSelectedToStore(orderedSelectedStoresPerCategory)}
-                        >
-                        Save
-                    </button>
+                    <Link type="button" className="btn btn-default" 
+                        to={`/Result`}
+                        // className={linkClass}
+                        key="result"
+                    >
+                        <span className="glyphicon glyphicon-arrow-right"> Customer View </span>
+                    </Link>
                 </div>
             </div>
+            
+
         </div>            
        
         )};
@@ -151,10 +156,6 @@ const mapDispatchToProps = (dispatch)=>({
     fetchCategories: ()=>dispatch(fetchCategories()),
     reOrderStores: (value)=>dispatch(reOrderStores(value)),
     updateSelectedStoreToStore:(storeID)=>dispatch(updateSelectedStoreToStore(storeID)),
-    addSelectedToStore:(value)=>dispatch(addSelectedToStore(value))
-
-    
-    
 });
 
 const mapStateToProps = (state,ownProps)=>{

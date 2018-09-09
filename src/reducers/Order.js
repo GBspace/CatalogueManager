@@ -8,7 +8,6 @@ export default (state=initialState,action)=>{
         case 'ADD_SELECTED':
             {
                 state.orderedState = [...action.payload];
-                console.log("Final ordered and selected items are ", state.orderedState);
                 return state;
             }
               

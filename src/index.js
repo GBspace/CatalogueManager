@@ -7,6 +7,7 @@ import {browserHistory,Router,Route} from 'react-router';
 import {syncHistoryWithStore} from 'react-router-redux';
 import Layout from './Containers/Layout';
 import Stores from './Containers/Stores';
+import Result from './Containers/Result';
 
 
 
@@ -19,6 +20,7 @@ const jsx = (
                 <Route path='/' component={Stores}></Route>
                 <Route path='/categories/:id' component={Stores} />
             </Route>
+            <Route path='/Result' component={Result} />
         </Router>
     </Provider>
 );
