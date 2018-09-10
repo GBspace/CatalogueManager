@@ -25,15 +25,17 @@
 
 .header-footer{
     
-    text-align: center;
+    text-align: left;
     height: auto;
-    background-color: rgb(108, 141, 197);
+    background-color:#4682B4;
     margin: 20px 0;
     border: 2px solid rgb(165, 160, 160);
 }
 
+
+
 h1{
-    color: rgb(89, 75, 170);
+    color:white;
 }
 
 /* .footer {

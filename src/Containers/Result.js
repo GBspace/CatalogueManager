@@ -38,12 +38,12 @@ class Result extends React.Component{
         const {result}=this.props;
         return(
                 <div className="view-container">
+                    <div className="header-footer">
+                        <div className="page-header">
+                            <h1>Catalogue Manager</h1>      
+                        </div> 
+                    </div>
                     <div className="container">
-                        <div className="header-footer">
-                            <div className="page-header">
-                                <h1>Catalogue Manager</h1>      
-                            </div> 
-                        </div>
                         <div className="row">
                             <div className="col-md-3">
                                 <div className="well blosd">
@@ -59,16 +59,14 @@ class Result extends React.Component{
                                     result.map((category,index)=>this.renderCategory(category,index))
                                 }
                             </div>
-
-
                         </div>
-                        <div className="header-footer">
-                            <footer className="footer">
-                                <div className="container">
-                                    <span className="text-muted">Contact Us: ######</span>
-                                </div>
-                            </footer>
-                        </div>
+                    </div>
+                    <div className="header-footer">
+                        <footer className="footer">
+                            <div className="container">
+                                <span className="text-muted">Contact Us: ######</span>
+                            </div>
+                        </footer>
                     </div>
                 </div>
             );

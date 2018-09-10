@@ -53,25 +53,6 @@ class Stores extends React.Component{
         });
     };
 
-    // updateState = (storeId)=>{
-    //     const existingArray = this.state.selected;
-    //         if( existingArray.includes(storeId)){
-    //             for( var i = 0; i <= existingArray.length-1; i++){ 
-    //                 if ( existingArray[i] === storeId) {
-    //                     existingArray.splice(i, 1); 
-    //                 }
-    //             }
-    //             this.setState({
-    //                 selected: existingArray
-    //             })
-    //         }else{
-    //             this.setState((prevState) => ({
-    //                 selected: [...prevState.selected, storeId]
-    //             }))
-            
-    //         };
-    // };
-
     itemSelected = (storeId) => (e)=>{
         e.preventDefault();
         this.props.updateSelectedStoreToStore(storeId);
