@@ -98,7 +98,7 @@ import {reorderCategories} from '../actions/Categories';
         const {categories} = this.props;
         return(
             <div className="well">
-                <h4>Brand</h4>
+                <h4>Categories</h4>
                 <div className="list-group">
                     {
                         this.renderAllCategory()
