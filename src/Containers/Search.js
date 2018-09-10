@@ -11,8 +11,9 @@ class Search extends React.Component{
             searchValue:''
         };
 
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.onSearchInputChange = this.onSearchInputChange.bind(this);
+        this.handleSubmit=this.handleSubmit.bind(this);
+        this.onSearchInputChange=this.onSearchInputChange.bind(this);
+        this.clearInput=this.clearInput.bind(this);
     };
 
 
@@ -30,6 +31,14 @@ class Search extends React.Component{
 
     };
 
+    clearInput=(e)=>{
+        this.setState({
+            searchValue:''
+        });
+        this.props.searchStore('');
+        
+    };  
+
     render(){
         return(
             <div className="well blosd">
@@ -37,7 +46,7 @@ class Search extends React.Component{
                     Find Your Deal 
                 </h3>
                 <div className="input-group">
-                    <form onSubmit={this.handleSubmit}>
+                    <form>
                         <input 
                             type="text"
                             className="form-control"
@@ -46,8 +55,15 @@ class Search extends React.Component{
                         />
                     </form>
                     <span className="input-group-btn">
-                        <button className="btn btn-default">
+                        <button className="btn btn-default" onClick={this.handleSubmit}>
                             <span className="glyphicon glyphicon-search" />
+                        </button>
+                    </span>
+                </div>
+                <div className="btn-clear">
+                    <span className="input-group-btn">
+                        <button className="btn btn-default" onClick={this.clearInput}>
+                            Clear
                         </button>
                     </span>
                 </div>
