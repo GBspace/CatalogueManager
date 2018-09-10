@@ -20,13 +20,6 @@ const Layout = ({children})=>{
                     </div>
                 </div>
             </div>
-            <div className="header-footer">
-                <footer className="footer">
-                    <div className="container">
-                        <span className="text-muted">Contact Us: ######</span>
-                    </div>
-                </footer>
-            </div>
         </div>
     )
 };

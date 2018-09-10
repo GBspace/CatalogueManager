@@ -113,20 +113,6 @@ class Stores extends React.Component{
                     return this.renderStore(store,index);
                 })}
             </div>
-            
-            <div className="row">
-                <div className="col-md-12">
-                    <Link type="button" className="btn btn-default" 
-                        to={`/Result`}
-                        // className={linkClass}
-                        key="result"
-                    >
-                        <span className="glyphicon glyphicon-arrow-right"> Customer View </span>
-                    </Link>
-                </div>
-            </div>
-            
-
         </div>            
        
         )};
